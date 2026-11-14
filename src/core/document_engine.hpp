@@ -34,14 +34,10 @@ struct SearchResult {
 class Command; // Forward declaration for Command pattern (Undo/Redo tree)
 
 class DocumentEngine {
-private:
-    std::vector<std::unique_ptr<Command>> undoStack;
-    std::vector<std::unique_ptr<Command>> redoStack;
-    std::string textBuffer;
-
 public:
     DocumentEngine();
-    ~DocumentEngine();
+    explicit DocumentEngine(const std::string& initial_text);
+    ~DocumentEngine(); // FIXED: Explicit declaration so unique_ptr sees complete Command type
 
     // Public API (records commands for undo/redo)
     void insertText(size_t position, const std::string& text);
