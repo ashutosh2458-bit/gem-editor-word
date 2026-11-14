@@ -1,6 +1,7 @@
 #include "document_engine.hpp"
 #include <sstream>
 #include <algorithm>
+#include <regex>
 
 namespace DocEngine {
 
@@ -10,6 +11,9 @@ public:
     virtual void execute(DocumentEngine& engine) = 0;
     virtual void undo(DocumentEngine& engine) = 0;
 };
+
+// Explicit destructor defined here where Command is a complete type
+DocumentEngine::~DocumentEngine() = default;
 
 class InsertCommand : public Command {
     size_t position_;
