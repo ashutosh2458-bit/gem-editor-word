@@ -1,3 +1,9 @@
+/// <reference types="vite/client" />
+
+declare module '*?raw' {
+  const content: string;
+  export default content;
+}
 export interface StyleSpan {
     start: number;
     length: number;
